@@ -25,10 +25,14 @@ android {
         resConfig "en"
     }
 
-    File signFile = rootProject.file('tiger.properties')
-    if (signFile.exists()) {
-        Properties p = new Properties()
-        p.load(new FileInputStream(signFile))
+    Properties p = new Properties()
+
+    File projectProperties = rootProject.file('tiger.properties')
+    if (projectProperties.exists()) {
+        p.load(new FileInputStream(projectProperties))
+    }
+
+    if (p.storeFile && p.storePassword && p.keyAlias && p.keyPassword) {
         signingConfigs {
             releaseConfig {
                 storeFile file(p.storeFile)
@@ -38,10 +42,10 @@ android {
             }
         }
         buildTypes.release.signingConfig signingConfigs.releaseConfig
-        defaultConfig {
-            buildConfigField "String", 'CONSUMER_KEY', "\"${p.twitterConsumerKey}\""
-            buildConfigField "String", 'SECRET_KEY', "\"${p.twitterConsumerSecret}\""
-        }
+    }
+    defaultConfig {
+        buildConfigField "String", 'CONSUMER_KEY', "${p.twitterKey ?: "notAValidKey"}"
+        buildConfigField "String", 'SECRET_KEY', "${p.twitterSecret ?: "notAValidSecret"}"
     }
 
     buildTypes {
@@ -65,7 +69,6 @@ android {
             universalApk false
         }
     }
-
 }
 
 ext {
