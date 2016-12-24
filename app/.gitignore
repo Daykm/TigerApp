@@ -1,0 +1,8 @@
+/google-services.json
+/app-release.apk
+/build
+
+src/main/res/values/twitterApiKey.xml
+src/twitterCreds/res/values/twitterTestCreds.xml
+src/main/res/values/keys.xml
+src/main/res/values/key.xml

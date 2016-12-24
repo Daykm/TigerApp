@@ -1,0 +1,111 @@
+apply plugin: 'com.android.application'
+apply plugin: 'realm-android'
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:2.2.3'
+        classpath 'io.realm:realm-gradle-plugin:2.2.0'
+    }
+}
+
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion '25.0.1'
+    defaultConfig {
+        applicationId "com.daykm.tiger"
+        minSdkVersion 19
+        targetSdkVersion 25
+        versionCode 3
+        versionName "0.1.1"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        resConfig "en"
+    }
+
+    File signFile = rootProject.file('tiger.properties')
+    if (signFile.exists()) {
+        Properties p = new Properties()
+        p.load(new FileInputStream(signFile))
+        signingConfigs {
+            releaseConfig {
+                storeFile file(p.storeFile)
+                storePassword p.storePassword
+                keyAlias p.keyAlias
+                keyPassword p.keyPassword
+            }
+        }
+        buildTypes.release.signingConfig signingConfigs.releaseConfig
+        defaultConfig {
+            buildConfigField "String", 'CONSUMER_KEY', "\"${p.twitterConsumerKey}\""
+            buildConfigField "String", 'SECRET_KEY', "\"${p.twitterConsumerSecret}\""
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled = true
+            useProguard = false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            minifyEnabled = true
+            useProguard = false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro', 'proguard-rules-debug.pro'
+        }
+    }
+
+    splits {
+        abi {
+            enable true
+            reset()
+            include 'x86', 'x86_64', 'arm64-v8a', 'armeabi-v7a', 'armeabi'
+            universalApk false
+        }
+    }
+
+}
+
+ext {
+    supportLib = '25.0.1'
+    exoplayer = 'r2.0.4'
+    dagger = '2.7'
+    retrofit = '2.1.0'
+    rxAndroid = '1.2.1'
+    picasso = '2.5.2'
+    okhttp = '3.5.0'
+    butterknife = '8.4.0'
+}
+
+dependencies {
+    compile "com.android.support:support-v4:$supportLib"
+    compile "com.android.support:appcompat-v7:$supportLib"
+    compile "com.android.support:design:$supportLib"
+    compile "com.android.support:preference-v7:$supportLib"
+
+    compile "io.reactivex:rxandroid:$rxAndroid"
+
+    compile 'com.android.support.constraint:constraint-layout:1.0.0-alpha6'
+
+    compile "com.google.android.exoplayer:exoplayer:$exoplayer"
+    compile "com.squareup.picasso:picasso:$picasso"
+
+    compile "com.google.dagger:dagger:$dagger"
+    annotationProcessor "com.google.dagger:dagger-compiler:$dagger"
+
+    compile "com.squareup.retrofit2:retrofit:$retrofit"
+    compile "com.squareup.retrofit2:converter-gson:$retrofit"
+    compile "com.squareup.okhttp3:logging-interceptor:$okhttp"
+    compile 'com.google.code.gson:gson:2.5'
+    compile 'com.jakewharton:butterknife:7.0.1'
+    compile 'com.jakewharton.timber:timber:4.4.0'
+    compile "com.jakewharton:butterknife:$butterknife"
+    annotationProcessor "com.jakewharton:butterknife-compiler:$butterknife"
+
+    androidTestCompile "com.android.support:support-annotations:$supportLib"
+    testCompile 'junit:junit:4.12'
+    androidTestCompile 'com.android.support.test:runner:0.5'
+    androidTestCompile 'com.android.support.test:rules:0.5'
+}
