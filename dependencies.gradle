@@ -1,0 +1,50 @@
+ext.libVer = [
+        supportLib : '25.2.0',
+        exoplayer  : 'r2.0.4',
+        dagger     : '2.7',
+        retrofit   : '2.1.0',
+        rxAndroid  : '1.2.1',
+        picasso    : '2.5.2',
+        okhttp     : '3.5.0',
+        butterknife: '8.4.0',
+        constraint : '1.0.2',
+        gson       : '2.7',
+        timber     : '4.4.0',
+        junit      : "4.12",
+        testRunner : "0.5",
+        testRules  : "0.5",
+]
+
+ext.pluginVer = [
+        android: "2.3.0",
+        realm  : "3.0.0"
+]
+
+ext.plugin = [
+        android: "com.android.tools.build:gradle:$pluginVer.android",
+        realm  : "io.realm:realm-gradle-plugin:$pluginVer.realm"
+]
+
+ext.lib = [
+        support            : "com.android.support:support-v4:$libVer.supportLib",
+        supportAppcompat   : "com.android.support:appcompat-v7:$libVer.supportLib",
+        supportDesign      : "com.android.support:design:$libVer.supportLib",
+        supportPreference  : "com.android.support:preference-v7:$libVer.supportLib",
+        supportAnnotation  : "com.android.support:support-annotations:$libVer.supportLib",
+        rxAndroid          : "io.reactivex:rxandroid:$libVer.rxAndroid",
+        constraintLayout   : "com.android.support.constraint:constraint-layout:$libVer.constraint",
+        exoplayer          : "com.google.android.exoplayer:exoplayer:$libVer.exoplayer",
+        picasso            : "com.squareup.picasso:picasso:$libVer.picasso",
+        dagger             : "com.google.dagger:dagger:$libVer.dagger",
+        daggerCompiler     : "com.google.dagger:dagger-compiler:$libVer.dagger",
+        retrofit           : "com.squareup.retrofit2:retrofit:$libVer.retrofit",
+        retrofitGson       : "com.squareup.retrofit2:converter-gson:$libVer.retrofit",
+        retrofitLogging    : "com.squareup.okhttp3:logging-interceptor:$libVer.okhttp",
+        gson               : "com.google.code.gson:gson:$libVer.gson",
+        butterknife        : "com.jakewharton:butterknife:$libVer.butterknife",
+        butterknifeCompiler: "com.jakewharton:butterknife-compiler:$libVer.butterknife",
+        timber             : "com.jakewharton.timber:timber:$libVer.timber",
+        junit              : "junit:junit:$libVer.junit",
+        supportTestRunner  : "com.android.support.test:runner:$libVer.testRunner",
+        supportTestRules   : "com.android.support.test:rules:$libVer.testRules"
+]

@@ -6,3 +6,17 @@ allprojects {
         maven { url "https://jitpack.io" }
     }
 }
+
+apply from: 'dependencies.gradle'
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        apply from: 'dependencies.gradle'
+        classpath plugin.android
+        classpath plugin.realm
+    }
+}
+
