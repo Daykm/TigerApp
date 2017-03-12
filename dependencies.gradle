@@ -17,12 +17,14 @@ ext.libVer = [
 
 ext.pluginVer = [
         android: "2.3.0",
-        realm  : "3.0.0"
+        realm  : "3.0.0",
+        hugo   : "1.2.1"
 ]
 
 ext.plugin = [
         android: "com.android.tools.build:gradle:$pluginVer.android",
-        realm  : "io.realm:realm-gradle-plugin:$pluginVer.realm"
+        realm  : "io.realm:realm-gradle-plugin:$pluginVer.realm",
+        hugo   : "com.jakewharton.hugo:hugo-plugin:$pluginVer.hugo"
 ]
 
 ext.lib = [

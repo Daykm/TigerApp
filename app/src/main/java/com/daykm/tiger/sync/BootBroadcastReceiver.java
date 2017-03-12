@@ -1,27 +1,21 @@
 package com.daykm.tiger.sync;
 
-import android.accounts.AccountManager;
 import android.content.BroadcastReceiver;
-import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
-import android.support.v7.preference.PreferenceManager;
-import android.util.Log;
 
-import com.daykm.tiger.R;
+import hugo.weaving.DebugLog;
 
-public class BootBroadcastReceiver  extends BroadcastReceiver{
+public class BootBroadcastReceiver extends BroadcastReceiver {
 
-    public static final String TAG = BootBroadcastReceiver.class.getSimpleName();
     @Override
+    @DebugLog
     public void onReceive(Context context, Intent intent) {
         requestPeriodicSync(context);
     }
 
 
     public static void requestPeriodicSync(Context context) {
-        Log.i(TAG, "Broadcast recieved");
     }
         /*
         // TODO because fuck

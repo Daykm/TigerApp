@@ -6,7 +6,6 @@ import android.content.ContentProviderClient;
 import android.content.Context;
 import android.content.SyncResult;
 import android.os.Bundle;
-import android.util.Log;
 
 import com.daykm.tiger.dagger.ServiceModule;
 import com.daykm.tiger.realm.GsonProvider;
@@ -20,6 +19,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.TimeZone;
 
+import hugo.weaving.DebugLog;
 import io.realm.Realm;
 import io.realm.RealmResults;
 import io.realm.Sort;
@@ -50,8 +50,8 @@ public class TimelineSyncAdapter extends AbstractThreadedSyncAdapter {
     SimpleDateFormat format = new SimpleDateFormat("MM/dd, HH:mm:ss", Locale.ENGLISH);
 
     @Override
+    @DebugLog
     public void onPerformSync(Account account, Bundle extras, String authority, ContentProviderClient provider, SyncResult syncResult) {
-        Log.i(TAG, "SYNCING");
 
         final Realm realm = Realm.getDefaultInstance();
 
@@ -72,6 +72,7 @@ public class TimelineSyncAdapter extends AbstractThreadedSyncAdapter {
         final Call<List<Status>> call = timeline.getTimeline(id, 20);
         call.enqueue(new Callback<List<Status>>() {
             @Override
+            @DebugLog
             public void onResponse(Call<List<Status>> call, final Response<List<Status>> response) {
                 if (response.isSuccessful()) {
                     Realm realm = Realm.getDefaultInstance();
@@ -95,7 +96,7 @@ public class TimelineSyncAdapter extends AbstractThreadedSyncAdapter {
                             realm.close();
                     }
                 } else {
-                    Log.e(TAG, response.message());
+                    Timber.e(response.message());
                 }
             }
 

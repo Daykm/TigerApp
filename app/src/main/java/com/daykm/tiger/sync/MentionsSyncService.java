@@ -3,12 +3,11 @@ package com.daykm.tiger.sync;
 import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
-import android.util.Log;
+
+import hugo.weaving.DebugLog;
 
 
 public class MentionsSyncService extends Service {
-
-    public static final String TAG = MentionsSyncService.class.getSimpleName();
 
     // Storage for an instance of the sync adapter
     private static MentionsSyncAdapter sSyncAdapter = null;
@@ -18,8 +17,8 @@ public class MentionsSyncService extends Service {
      * Instantiate the sync adapter object.
      */
     @Override
+    @DebugLog
     public void onCreate() {
-        Log.i(TAG, "Service Created");
         /*
          * Create the sync adapter as a singleton.
          * Set the sync adapter as syncable
@@ -33,6 +32,7 @@ public class MentionsSyncService extends Service {
     }
 
     @Override
+    @DebugLog
     public IBinder onBind(Intent intent) {
         /*
          * Get the object that allows external processes
