@@ -13,7 +13,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,13 +31,13 @@ import java.io.IOException;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import hugo.weaving.DebugLog;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import timber.log.Timber;
 
 public class UpdateStatusDialog extends DialogFragment {
-
-    public static final String TAG = UpdateStatusDialog.class.getSimpleName();
 
     @BindView(R.id.tweet_edit)
     EditText tweet;
@@ -113,16 +112,15 @@ public class UpdateStatusDialog extends DialogFragment {
             // TODO make sure this doesn't leak
             final TwitterActivity activityRef = (TwitterActivity) getActivity();
             @Override
+            @DebugLog
             public void onResponse(Call<Void> call, Response<Void> response) {
                 if (response.code() == 200) {
-                    Log.i(TAG, "success");
                     Snackbar.make(activityRef.findViewById(R.id.fab), "Tweet sent successfully", Snackbar.LENGTH_SHORT).show();
                 } else {
-                    Log.i(TAG, "success");
                     try {
                         Snackbar.make(activityRef.findViewById(R.id.fab), response.errorBody().string(), Snackbar.LENGTH_SHORT).show();
                     } catch (IOException e) {
-                        Log.e(TAG, "Error", e);
+                        Timber.e(e);
                     }
                 }
             }

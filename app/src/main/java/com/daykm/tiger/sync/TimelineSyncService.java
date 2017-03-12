@@ -3,9 +3,8 @@ package com.daykm.tiger.sync;
 import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
-import android.util.Log;
 
-import com.daykm.tiger.services.TimelineService;
+import hugo.weaving.DebugLog;
 
 
 public class TimelineSyncService extends Service {
@@ -20,8 +19,8 @@ public class TimelineSyncService extends Service {
      * Instantiate the sync adapter object.
      */
     @Override
+    @DebugLog
     public void onCreate() {
-        Log.i(TAG, "Service Created");
         /*
          * Create the sync adapter as a singleton.
          * Set the sync adapter as syncable

@@ -3,32 +3,31 @@ package com.daykm.tiger.features.authentication;
 import android.accounts.Account;
 import android.accounts.AccountManager;
 import android.os.Bundle;
-import android.util.Log;
 import android.webkit.WebView;
 
-import com.daykm.tiger.features.base.BaseActivity;
 import com.daykm.tiger.BuildConfig;
 import com.daykm.tiger.R;
-import com.daykm.tiger.services.TwitterApp;
+import com.daykm.tiger.features.base.BaseActivity;
 import com.daykm.tiger.realm.domain.TwitterServiceCredentials;
 import com.daykm.tiger.services.AccessTokenService;
 import com.daykm.tiger.services.AuthenticationService;
+import com.daykm.tiger.services.TwitterApp;
 
 import java.io.IOException;
 import java.util.Arrays;
 
 import javax.inject.Inject;
 
+import hugo.weaving.DebugLog;
 import io.realm.Realm;
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
+import timber.log.Timber;
 
 public class AuthenticationActivity extends BaseActivity implements TwitterWebViewClient.Callbacks {
-    static final String TAG = AuthenticationActivity.class.getSimpleName();
-
     @Inject
     AuthenticationService authService;
 
@@ -71,36 +70,35 @@ public class AuthenticationActivity extends BaseActivity implements TwitterWebVi
 
         authService.getRequestToken().enqueue(new Callback<ResponseBody>() {
             @Override
+            @DebugLog
             public void onResponse(Call<ResponseBody> call, retrofit2.Response<ResponseBody> response) {
                 if (response.code() == 200) {
-                    Log.i(TAG, "success");
                     try {
                         String url = "https://api.twitter.com/oauth/authenticate?" +
                                 response.body().string().split("&")[0];
-                        Log.i(TAG, "Authentication url: " + url);
+                        Timber.i("Authentication url: " + url);
                         webView.loadUrl(url);
                     } catch (IOException e) {
-                        e.printStackTrace();
+                        Timber.e(e);
                     }
                 } else {
-                    Log.i(TAG, "Error getting authentication token, finishing activity");
                     finish();
                 }
             }
 
             @Override
+            @DebugLog
             public void onFailure(Call<ResponseBody> all, Throwable throwable) {
-                Log.i(TAG, "Failure");
+                Timber.e(throwable);
             }
         });
     }
 
     @Override
+    @DebugLog
     public void onCallback(final String url) {
         final String[] params = url.replace(TwitterApp.CALLBACK_URL, "").split("&");
-        if(BuildConfig.DEBUG) {
-            Log.i(TAG, Arrays.toString(params));
-        }
+        Timber.i(Arrays.toString(params));
 
         Realm realm = Realm.getDefaultInstance();
 
@@ -115,9 +113,9 @@ public class AuthenticationActivity extends BaseActivity implements TwitterWebVi
         RequestBody body = RequestBody.create(MediaType.parse("application/x-www-form-urlencoded"), params[1]);
         tokenService.getAccessToken(body).enqueue(new Callback<ResponseBody>() {
             @Override
+            @DebugLog
             public void onResponse(Call<ResponseBody> call, retrofit2.Response<ResponseBody> response) {
                 if (response.code() == 200) {
-                    Log.i(TAG, "Success");
                     try {
 
                         Realm realm = Realm.getDefaultInstance();
@@ -163,8 +161,8 @@ public class AuthenticationActivity extends BaseActivity implements TwitterWebVi
             }
 
             @Override
+            @DebugLog
             public void onFailure(Call<ResponseBody> call, Throwable t) {
-                Log.i(TAG, "Error auth token");
                 setResult(RESULT_CANCELED);
                 finish();
             }

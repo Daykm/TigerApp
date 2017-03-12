@@ -1,15 +1,13 @@
 package com.daykm.tiger.util;
 
-import android.util.Log;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-public class StringUtil {
+import timber.log.Timber;
 
-    private static final String TAG = StringUtil.class.getSimpleName();
+public class StringUtil {
 
     public static boolean containsIgnoreCase(String src, String what) {
         final int length = what.length();
@@ -43,8 +41,7 @@ public class StringUtil {
         try {
             return sf.parse(date);
         } catch (ParseException e) {
-            Log.i(TAG, "ParseException: \n " + date);
-            e.printStackTrace();
+            Timber.e(e);
             return null;
         }
     }

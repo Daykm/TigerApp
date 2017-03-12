@@ -1,7 +1,5 @@
 package com.daykm.tiger.realm.domain;
 
-import android.util.Log;
-
 import com.daykm.tiger.realm.wrappers.StringWrapper;
 import com.google.gson.annotations.SerializedName;
 
@@ -14,6 +12,7 @@ import io.realm.RealmList;
 import io.realm.RealmObject;
 import io.realm.annotations.Ignore;
 import io.realm.annotations.PrimaryKey;
+import timber.log.Timber;
 
 /**
  * TODO: make this more complete and check deserialization performance probably
@@ -68,7 +67,7 @@ public class Status extends RealmObject {
             try {
                 date = sf.parse(created_at);
             } catch (ParseException e) {
-                Log.e("Status", "Unable to get parsed date");
+                Timber.e(e);
             }
         }
         return date;

@@ -20,7 +20,6 @@ import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -40,15 +39,15 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import hugo.weaving.DebugLog;
 import io.realm.Realm;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import timber.log.Timber;
 
 public class TwitterActivity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-
-    static final String TAG = TwitterActivity.class.getSimpleName();
 
     @Inject
     TimelineService timeline;
@@ -66,7 +65,6 @@ public class TwitterActivity extends BaseActivity
 
     Adapter adapter;
     ActionBarDrawerToggle toggle;
-
 
     Realm realm;
 
@@ -115,8 +113,8 @@ public class TwitterActivity extends BaseActivity
         }
     }
 
+    @DebugLog
     private void requestSync() {
-        Log.i(TAG, "Requesting Sync");
         // Pass the settings flags by inserting them in a bundle
         Bundle settingsBundle = new Bundle();
         settingsBundle.putBoolean(
@@ -126,7 +124,7 @@ public class TwitterActivity extends BaseActivity
 
         AccountManager manager = AccountManager.get(this);
         Account account = manager.getAccountsByType(getString(R.string.account_type))[0];
-        Log.i(TAG, "1 is syncable, 0 is not: " +
+        Timber.i("1 is syncable, 0 is not: " +
                 ContentResolver.getIsSyncable(account, getString(R.string.authority_timeline)));
         ContentResolver.requestSync(
                 account,
@@ -212,18 +210,18 @@ public class TwitterActivity extends BaseActivity
         });
 
         pager.setAdapter(adapter);
-        Log.i(TAG, "USER ID: " + creds.userId);
         timeline.getUser(creds.userId, null)
                 .enqueue(new Callback<User>() {
                     @Override
+                    @DebugLog
                     public void onResponse(Call<User> call, Response<User> response) {
                         if (response.code() == 200) {
                         }
                     }
 
                     @Override
+                    @DebugLog
                     public void onFailure(Call<User> call, Throwable t) {
-                        Log.i(TAG, "Failure");
                         Snackbar
                                 .make(layout, t.getMessage(), Snackbar.LENGTH_LONG)
                                 .setAction(R.string.action_quit, new View.OnClickListener() {
