@@ -20,7 +20,7 @@
         android:theme="@style/AppTheme">
 
         <activity
-            android:name=".features.timeline.TwitterActivity"
+            android:name=".features.twitter.TwitterActivity"
             android:windowSoftInputMode="adjustResize"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -44,11 +44,11 @@
         <activity
             android:name=".features.preferences.SettingsActivity"
             android:label="@string/title_activity_settings"
-            android:parentActivityName=".features.timeline.TwitterActivity"
+            android:parentActivityName=".features.twitter.TwitterActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.daykm.tiger.features.timeline.TwitterActivity" />
+                android:value="com.daykm.tiger.features.twitter.TwitterActivity"/>
         </activity>
 
         <activity android:name=".features.tweeting.TweetActivity" />
