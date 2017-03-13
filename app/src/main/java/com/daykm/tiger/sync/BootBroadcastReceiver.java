@@ -3,22 +3,18 @@ package com.daykm.tiger.sync;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-
 import hugo.weaving.DebugLog;
 
 public class BootBroadcastReceiver extends BroadcastReceiver {
 
-    @Override
-    @DebugLog
-    public void onReceive(Context context, Intent intent) {
-        requestPeriodicSync(context);
-    }
+	@Override @DebugLog public void onReceive(Context context, Intent intent) {
+		requestPeriodicSync(context);
+	}
 
-
-    public static void requestPeriodicSync(Context context) {
-    }
-        /*
-        // TODO because fuck
+	public static void requestPeriodicSync(Context context) {
+	}
+				/*
+				// TODO because fuck
         int freq = Integer.parseInt(PreferenceManager.getDefaultSharedPreferences(context).getString("sync_frequency", "5"));
 
         ContentResolver.addPeriodicSync(

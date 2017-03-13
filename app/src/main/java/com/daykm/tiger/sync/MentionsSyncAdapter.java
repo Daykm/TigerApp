@@ -6,34 +6,34 @@ import android.content.ContentProviderClient;
 import android.content.Context;
 import android.content.SyncResult;
 import android.os.Bundle;
-
-import com.daykm.tiger.services.TwitterApp;
 import com.daykm.tiger.dagger.ServiceModule;
 import com.daykm.tiger.realm.GsonProvider;
 import com.daykm.tiger.services.OAuth2Interceptor;
 import com.daykm.tiger.services.TimelineService;
-
+import com.daykm.tiger.services.TwitterApp;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 
-public class MentionsSyncAdapter extends AbstractThreadedSyncAdapter{
+public class MentionsSyncAdapter extends AbstractThreadedSyncAdapter {
 
-    public static final String TAG = MentionsSyncAdapter.class.getSimpleName();
+	public static final String TAG = MentionsSyncAdapter.class.getSimpleName();
 
-    TimelineService mentionsService;
-    public MentionsSyncAdapter(Context context, boolean autoInitialize) {
-        super(context, autoInitialize);
+	TimelineService mentionsService;
 
-        OkHttpClient httpBuilder = new OkHttpClient.Builder().build();
+	public MentionsSyncAdapter(Context context, boolean autoInitialize) {
+		super(context, autoInitialize);
 
-        OAuth2Interceptor interceptor = new OAuth2Interceptor();
+		OkHttpClient httpBuilder = new OkHttpClient.Builder().build();
 
-        mentionsService = ServiceModule.buildService(
-                TimelineService.class, interceptor, GsonProvider.getGson(), new Retrofit.Builder(), httpBuilder.newBuilder(), TwitterApp.BASE_URL_1_1);
-    }
+		OAuth2Interceptor interceptor = new OAuth2Interceptor();
 
-    @Override
-    public void onPerformSync(Account account, Bundle extras, String authority, ContentProviderClient provider, SyncResult syncResult) {
+		mentionsService =
+				ServiceModule.buildService(TimelineService.class, interceptor, GsonProvider.getGson(),
+						new Retrofit.Builder(), httpBuilder.newBuilder(), TwitterApp.BASE_URL_1_1);
+	}
+
+	@Override public void onPerformSync(Account account, Bundle extras, String authority,
+			ContentProviderClient provider, SyncResult syncResult) {
 /*
 
         Realm realm = Realm.getDefaultInstance();
@@ -75,6 +75,5 @@ public class MentionsSyncAdapter extends AbstractThreadedSyncAdapter{
         });
         */
 
-
-    }
+	}
 }
