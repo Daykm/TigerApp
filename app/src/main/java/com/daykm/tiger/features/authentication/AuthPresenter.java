@@ -1,12 +1,13 @@
 package com.daykm.tiger.features.authentication;
 
-import com.daykm.tiger.BuildConfig;
+import com.daykm.tiger.features.base.BuildConstants;
 import com.daykm.tiger.features.data.realm.domain.TwitterServiceCredentials;
 import com.daykm.tiger.features.services.AccessTokenService;
 import com.daykm.tiger.features.services.AuthenticationService;
 import com.daykm.tiger.features.services.TwitterApp;
 import hugo.weaving.DebugLog;
 import io.realm.Realm;
+import io.realm.RealmResults;
 import java.io.IOException;
 import java.util.Arrays;
 import javax.inject.Inject;
@@ -25,9 +26,13 @@ public class AuthPresenter implements AuthContract.Presenter {
 
 	AuthContract.View view;
 
-	@Inject public AuthPresenter(AuthenticationService authService, AccessTokenService tokenService) {
+	BuildConstants constants;
+
+	@Inject AuthPresenter(AuthenticationService authService, AccessTokenService tokenService,
+			BuildConstants constants) {
 		this.authService = authService;
 		this.tokenService = tokenService;
+		this.constants = constants;
 	}
 
 	@Override public void attach(final AuthContract.View view) {
@@ -58,7 +63,7 @@ public class AuthPresenter implements AuthContract.Presenter {
 	}
 
 	@Override public void detach() {
-
+		view = null;
 	}
 
 	public void loginCallback(final String url) {
@@ -83,46 +88,47 @@ public class AuthPresenter implements AuthContract.Presenter {
 			public void onResponse(Call<ResponseBody> call, retrofit2.Response<ResponseBody> response) {
 				if (response.code() == 200) {
 					try {
-
+						final TwitterServiceCredentials creds = parseResponse(response.body().string());
 						Realm realm = Realm.getDefaultInstance();
-						final String responseString = response.body().string();
-
-						// TODO make this cleaner and faster probably
-						String[] pairs = responseString.split("&");
-						String token = pairs[0].split("=")[1];
-						String tokenSecret = pairs[1].split("=")[1];
-						String userId = pairs[2].split("=")[1];
-						String screenName = pairs[3].split("=")[1];
-						String authExpires = pairs[4].split("=")[1];
-						final TwitterServiceCredentials tempCreds =
-								realm.where(TwitterServiceCredentials.class).findFirst();
-
-						final TwitterServiceCredentials realCreds = new TwitterServiceCredentials();
-						realCreds.appToken = BuildConfig.CONSUMER_KEY;
-						realCreds.appTokenSecret = BuildConfig.SECRET_KEY;
-						realCreds.userId = userId;
-						realCreds.displayName = screenName;
-						realCreds.token = token;
-						realCreds.tokenSecret = tokenSecret;
-						realCreds.authExpires = authExpires;
-						realCreds.isAuthenticated = true;
 						realm.executeTransaction(new Realm.Transaction() {
 							@Override public void execute(Realm realm) {
-								tempCreds.deleteFromRealm();
-								realm.copyToRealm(realCreds);
+								final RealmResults<TwitterServiceCredentials> oldCreds =
+										realm.where(TwitterServiceCredentials.class).findAll();
+								Timber.i(oldCreds.deleteAllFromRealm() ? "Deleted creds" : "No creds exist");
+								realm.copyToRealm(creds);
 							}
 						});
 
-						view.addAccount(userId);
+						view.addAccount(creds.userId);
 						realm.close();
 						view.setResultOk();
 						view.finish();
 					} catch (IOException e) {
-						e.printStackTrace();
+						Timber.e(e);
 					}
 				} else {
 					view.loadUrl(url);
 				}
+			}
+
+			private TwitterServiceCredentials parseResponse(String response) {
+				String[] pairs = response.split("&");
+				String token = pairs[0].split("=")[1];
+				String tokenSecret = pairs[1].split("=")[1];
+				String userId = pairs[2].split("=")[1];
+				String screenName = pairs[3].split("=")[1];
+				String authExpires = pairs[4].split("=")[1];
+
+				final TwitterServiceCredentials realCreds = new TwitterServiceCredentials();
+				realCreds.appToken = constants.getConsumerKey();
+				realCreds.appTokenSecret = constants.getSecretKey();
+				realCreds.userId = userId;
+				realCreds.displayName = screenName;
+				realCreds.token = token;
+				realCreds.tokenSecret = tokenSecret;
+				realCreds.authExpires = authExpires;
+				realCreds.isAuthenticated = true;
+				return realCreds;
 			}
 
 			@Override @DebugLog public void onFailure(Call<ResponseBody> call, Throwable t) {

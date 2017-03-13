@@ -22,10 +22,16 @@ public class AuthActivity extends BaseActivity
 	@Override protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		App.instance().getComponent().inject(this);
+		presenter.attach(this);
 		setContentView(R.layout.activity_authentication);
-		WebView webView = (WebView) findViewById(R.id.webview);
+		webView = (WebView) findViewById(R.id.webview);
 		webView.clearCache(true);
 		webView.setWebViewClient(new TwitterWebViewClient(this));
+	}
+
+	@Override protected void onDestroy() {
+		super.onDestroy();
+		presenter.detach();
 	}
 
 	@Override @DebugLog public void onCallback(final String url) {
