@@ -24,13 +24,14 @@ import android.view.View;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import com.daykm.tiger.R;
-import com.daykm.tiger.features.authentication.AuthenticationActivity;
+import com.daykm.tiger.features.authentication.AuthActivity;
+import com.daykm.tiger.features.base.App;
 import com.daykm.tiger.features.base.BaseActivity;
+import com.daykm.tiger.features.data.realm.domain.TwitterServiceCredentials;
+import com.daykm.tiger.features.data.realm.domain.User;
 import com.daykm.tiger.features.preferences.SettingsActivity;
+import com.daykm.tiger.features.services.TimelineService;
 import com.daykm.tiger.features.tweeting.UpdateStatusDialog;
-import com.daykm.tiger.realm.domain.TwitterServiceCredentials;
-import com.daykm.tiger.realm.domain.User;
-import com.daykm.tiger.services.TimelineService;
 import hugo.weaving.DebugLog;
 import io.realm.Realm;
 import javax.inject.Inject;
@@ -63,7 +64,7 @@ public class TwitterActivity extends BaseActivity
 
 	@Override protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		component.inject(this);
+		App.instance().getComponent().inject(this);
 		realm = Realm.getDefaultInstance();
 		creds = realm.where(TwitterServiceCredentials.class).findFirst();
 		checkLogin();
@@ -71,8 +72,8 @@ public class TwitterActivity extends BaseActivity
 
 	private void checkLogin() {
 		if (!creds.isAuthenticated) {
-			Intent intent = new Intent(this, AuthenticationActivity.class);
-			startActivityForResult(intent, AuthenticationActivity.REQUEST_CODE);
+			Intent intent = new Intent(this, AuthActivity.class);
+			startActivityForResult(intent, AuthActivity.REQUEST_CODE);
 		} else {
 			inflate();
 			requestSyncPermission();
@@ -80,7 +81,7 @@ public class TwitterActivity extends BaseActivity
 	}
 
 	@Override protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		if (requestCode == AuthenticationActivity.REQUEST_CODE) {
+		if (requestCode == AuthActivity.REQUEST_CODE) {
 			if (resultCode == RESULT_OK) {
 				creds = realm.where(TwitterServiceCredentials.class).findFirst();
 				inflate();
@@ -138,7 +139,6 @@ public class TwitterActivity extends BaseActivity
 	}
 
 	private void inflate() {
-		component.inject(this);
 		setContentView(R.layout.activity_twitter);
 		ButterKnife.bind(this);
 		setSupportActionBar(toolbar);
@@ -180,22 +180,24 @@ public class TwitterActivity extends BaseActivity
 		});
 
 		pager.setAdapter(adapter);
-		timeline.getUser(creds.userId, null).enqueue(new Callback<User>() {
-			@Override @DebugLog public void onResponse(Call<User> call, Response<User> response) {
-				if (response.code() == 200) {
-				}
-			}
+		timeline.getUser(creds.userId, null).enqueue(new TimelineCallback());
+	}
 
-			@Override @DebugLog public void onFailure(Call<User> call, Throwable t) {
-				Snackbar.make(layout, t.getMessage(), Snackbar.LENGTH_LONG)
-						.setAction(R.string.action_quit, new View.OnClickListener() {
-							@Override public void onClick(View v) {
-								finish();
-							}
-						})
-						.show(); // Don’t forget to show!
+	public class TimelineCallback implements Callback<User> {
+		@Override @DebugLog public void onResponse(Call<User> call, Response<User> response) {
+			if (response.code() == 200) {
 			}
-		});
+		}
+
+		@Override @DebugLog public void onFailure(Call<User> call, Throwable t) {
+			Snackbar.make(layout, t.getMessage(), Snackbar.LENGTH_LONG)
+					.setAction(R.string.action_quit, new View.OnClickListener() {
+						@Override public void onClick(View v) {
+							finish();
+						}
+					})
+					.show(); // Don’t forget to show!
+		}
 	}
 
 	@Override public boolean onNavigationItemSelected(MenuItem item) {

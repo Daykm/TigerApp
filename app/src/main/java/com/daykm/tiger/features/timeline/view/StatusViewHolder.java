@@ -8,8 +8,8 @@ import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import com.daykm.tiger.R;
-import com.daykm.tiger.realm.domain.Status;
-import com.daykm.tiger.view.RelativeTextClock;
+import com.daykm.tiger.features.data.realm.domain.Status;
+import com.daykm.tiger.features.view.RelativeTextClock;
 import timber.log.Timber;
 
 public class StatusViewHolder extends RecyclerView.ViewHolder {

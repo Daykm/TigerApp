@@ -30,7 +30,7 @@
         </activity>
 
         <activity
-            android:name=".features.authentication.AuthenticationActivity"
+            android:name=".features.authentication.AuthActivity"
             android:launchMode="singleInstance"
             android:noHistory="true"
             android:theme="@style/AppTheme.NoActionBar">
@@ -53,14 +53,14 @@
 
         <activity android:name=".features.tweeting.TweetActivity" />
 
-        <receiver android:name=".sync.BootBroadcastReceiver">
+      <receiver android:name=".features.sync.BootBroadcastReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
 
         <service
-            android:name=".sync.TimelineSyncService"
+            android:name=".features.sync.TimelineSyncService"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.content.SyncAdapter" />
@@ -71,7 +71,7 @@
         </service>
 
         <service
-            android:name=".sync.MentionsSyncService"
+            android:name=".features.sync.MentionsSyncService"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.content.SyncAdapter" />
@@ -82,19 +82,19 @@
         </service>
 
         <provider
-            android:name="com.daykm.tiger.sync.TwitterTimelineProvider"
+            android:name=".features.sync.TwitterTimelineProvider"
             android:authorities=".sync.TimelineSyncService"
             android:exported="false"
             android:syncable="true" />
         
         <provider
-            android:name=".sync.TwitterMentionsProvider"
+            android:name=".features.sync.TwitterMentionsProvider"
             android:authorities="sync.MentionsSyncService"
             android:exported="false"
             android:syncable="true" />
 
         <service
-            android:name=".sync.TwitterAuthenticatorService"
+            android:name=".features.sync.TwitterAuthenticatorService"
             android:enabled="true"
             android:exported="true">
             <intent-filter>
