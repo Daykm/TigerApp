@@ -10,8 +10,8 @@ import android.view.Gravity;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ProgressBar;
+import com.daykm.tiger.features.data.realm.domain.Status;
 import com.daykm.tiger.features.timeline.StatusViewAdapter;
-import com.daykm.tiger.realm.domain.Status;
 import io.realm.Realm;
 import io.realm.Sort;
 

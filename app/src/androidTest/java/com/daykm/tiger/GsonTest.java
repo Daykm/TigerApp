@@ -3,13 +3,11 @@ package com.daykm.tiger;
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.runner.AndroidJUnit4;
-
-import com.daykm.tiger.realm.domain.Entities;
-import com.daykm.tiger.realm.GsonProvider;
-import com.daykm.tiger.realm.domain.Mention;
-import com.daykm.tiger.realm.domain.Status;
+import com.daykm.tiger.features.data.realm.GsonProvider;
+import com.daykm.tiger.features.data.realm.domain.Entities;
+import com.daykm.tiger.features.data.realm.domain.Mention;
+import com.daykm.tiger.features.data.realm.domain.Status;
 import com.google.gson.Gson;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

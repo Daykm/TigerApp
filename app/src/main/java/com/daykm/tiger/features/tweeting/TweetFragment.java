@@ -7,12 +7,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import com.daykm.tiger.R;
-import com.daykm.tiger.realm.domain.Status;
+import com.daykm.tiger.features.data.realm.domain.Status;
 import io.realm.Realm;
 
 public class TweetFragment extends Fragment {
-
-	public static final String TAG = TweetFragment.class.getSimpleName();
 
 	private static final String ID = "id";
 

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    >
 
     <ImageView
         android:id="@+id/icon"
@@ -42,7 +42,7 @@
         android:layout_toStartOf="@id/tweet_image"
         tools:text="WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW"/>
 
-    <com.daykm.tiger.view.RelativeTextClock
+  <com.daykm.tiger.features.view.RelativeTextClock
         android:id="@+id/tweet_timestamp"
         style="@style/Timestamp"
         android:layout_width="30dp"

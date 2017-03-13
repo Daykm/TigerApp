@@ -2,7 +2,7 @@ package com.daykm.tiger.features.authentication;
 
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import com.daykm.tiger.services.TwitterApp;
+import com.daykm.tiger.features.services.TwitterApp;
 
 public class TwitterWebViewClient extends WebViewClient {
 

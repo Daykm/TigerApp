@@ -3,8 +3,8 @@ package com.daykm.tiger.features.timeline;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.ViewGroup;
+import com.daykm.tiger.features.data.realm.domain.Status;
 import com.daykm.tiger.features.timeline.view.StatusViewHolder;
-import com.daykm.tiger.realm.domain.Status;
 import io.realm.RealmChangeListener;
 import io.realm.RealmResults;
 

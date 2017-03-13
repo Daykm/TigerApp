@@ -8,9 +8,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import com.daykm.tiger.R;
+import com.daykm.tiger.features.data.realm.domain.TwitterServiceCredentials;
+import com.daykm.tiger.features.services.TimelineService;
 import com.daykm.tiger.features.timeline.StatusViewAdapter;
-import com.daykm.tiger.realm.domain.TwitterServiceCredentials;
-import com.daykm.tiger.services.TimelineService;
 
 public class MentionsFragment extends Fragment {
 

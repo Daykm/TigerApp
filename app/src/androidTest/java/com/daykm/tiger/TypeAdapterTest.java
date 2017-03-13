@@ -1,21 +1,17 @@
 package com.daykm.tiger;
 
 import android.support.test.runner.AndroidJUnit4;
-
-import com.daykm.tiger.realm.domain.Entities;
-import com.daykm.tiger.realm.GsonProvider;
-import com.daykm.tiger.realm.domain.Status;
-import com.daykm.tiger.util.StringUtil;
+import com.daykm.tiger.features.data.realm.GsonProvider;
+import com.daykm.tiger.features.data.realm.domain.Entities;
+import com.daykm.tiger.features.data.realm.domain.Status;
+import com.daykm.tiger.features.util.StringUtil;
 import com.google.gson.Gson;
-
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
-
 import static junit.framework.Assert.assertEquals;
-import static junit.framework.Assert.assertNotNull;
 
 @RunWith(AndroidJUnit4.class)
 public class TypeAdapterTest {
