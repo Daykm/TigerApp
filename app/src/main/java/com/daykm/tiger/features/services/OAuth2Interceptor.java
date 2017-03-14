@@ -23,8 +23,6 @@ import timber.log.Timber;
 
 public class OAuth2Interceptor implements Interceptor {
 
-	public static final String TAG = OAuth2Interceptor.class.getSimpleName();
-
 	// https://dev.twitter.com/oauth/overview/authorizing-requests
 	static final String OAUTH_SIGNATURE_METHOD_HMAC = "HMAC-SHA1";
 	static final String OAUTH_VERSION_1_0 = "1.0";

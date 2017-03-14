@@ -19,11 +19,6 @@ public class CollectionDeserializer implements JsonDeserializer<Collection<?>> {
 		return parseAsArrayList(json, realType);
 	}
 
-	/**
-	 * @param serializedData
-	 * @param type
-	 * @return
-	 */
 	@SuppressWarnings("unchecked") public <T> ArrayList<T> parseAsArrayList(JsonElement json,
 			T type) {
 		ArrayList<T> newArray = new ArrayList<T>();

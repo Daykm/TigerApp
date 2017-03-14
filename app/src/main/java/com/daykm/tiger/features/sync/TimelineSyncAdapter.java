@@ -30,7 +30,6 @@ import timber.log.Timber;
 public class TimelineSyncAdapter extends AbstractThreadedSyncAdapter {
 
 	TimelineService timeline;
-	public static final String TAG = TimelineSyncAdapter.class.getSimpleName();
 
 	public TimelineSyncAdapter(Context context, boolean autoInitialize) {
 		super(context, autoInitialize);
@@ -57,9 +56,9 @@ public class TimelineSyncAdapter extends AbstractThreadedSyncAdapter {
 		Status status = result.size() > 0 ? result.first() : null;
 
 		try {
-			Timber.i("Last tweet at: " + status != null ? format.format(status.created_at) : "never");
+			Timber.i("Last tweet at: " + (status != null ? format.format(status.created_at) : "never"));
 		} catch (IllegalArgumentException e) {
-			Timber.e("Could not format date %s", status.created_at);
+			Timber.e(e);
 		}
 
 		String id =

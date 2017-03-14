@@ -11,6 +11,7 @@ import com.daykm.tiger.features.dagger.DaggerServiceComponent;
 import com.daykm.tiger.features.dagger.ServiceComponent;
 import com.daykm.tiger.features.data.realm.domain.TwitterServiceCredentials;
 import com.daykm.tiger.features.preferences.AppPreferences;
+import com.jakewharton.threetenabp.AndroidThreeTen;
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
 import timber.log.Timber;
@@ -28,6 +29,8 @@ public class App extends Application {
 		if (BuildConfig.DEBUG) {
 			Timber.plant(new Timber.DebugTree());
 		}
+
+		AndroidThreeTen.init(this);
 
 		Realm.init(this);
 		RealmConfiguration realmConfiguration =

@@ -14,7 +14,6 @@ import com.daykm.tiger.features.timeline.StatusViewAdapter;
 
 public class MentionsFragment extends Fragment {
 
-	public static final String TAG = MentionsFragment.class.getSimpleName();
 	StatusViewAdapter adapter;
 	TimelineService service;
 

@@ -85,6 +85,7 @@ dependencies {
     compile lib.gson
     compile lib.butterknife
     compile lib.timber
+  compile lib.threeTen
     annotationProcessor lib.butterknifeCompiler
 
     androidTestCompile lib.supportAnnotation

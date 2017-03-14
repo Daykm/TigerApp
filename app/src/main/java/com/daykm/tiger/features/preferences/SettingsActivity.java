@@ -16,8 +16,6 @@ import com.daykm.tiger.R;
 public class SettingsActivity extends AppCompatActivity
 		implements PreferenceFragmentCompat.OnPreferenceStartFragmentCallback {
 
-	public static final String TAG = SettingsActivity.class.getSimpleName();
-
 	@BindView(R.id.toolbar) Toolbar toolbar;
 
 	@Override protected void onCreate(@Nullable Bundle savedInstanceState) {

@@ -1,34 +1,22 @@
 package com.daykm.tiger.features.view;
 
 import android.content.Context;
-import android.database.ContentObserver;
-import android.net.Uri;
 import android.os.Build;
-import android.os.Handler;
 import android.os.SystemClock;
 import android.support.annotation.RequiresApi;
+import android.support.v7.widget.AppCompatTextView;
 import android.util.AttributeSet;
 import android.widget.RemoteViews;
-import android.widget.TextView;
+import org.threeten.bp.Duration;
+import org.threeten.bp.LocalDateTime;
 
-@RemoteViews.RemoteView public class RelativeTextClock extends TextView {
+@RemoteViews.RemoteView public class RelativeTextClock extends AppCompatTextView {
 
 	private boolean mAttached;
-	private long startingTimeStamp;
-
-	private final ContentObserver mFormatChangeObserver = new ContentObserver(new Handler()) {
-		@Override public void onChange(boolean selfChange) {
-			onTimeChanged();
-		}
-
-		@Override public void onChange(boolean selfChange, Uri uri) {
-			onTimeChanged();
-		}
-	};
-
+	private LocalDateTime timestamp;
 	private final Runnable mTicker = new Runnable() {
 		public void run() {
-			onTimeChanged();
+			updateTime();
 			long now = SystemClock.uptimeMillis();
 			long next = now + (1000 - now % 1000);
 			getHandler().postAtTime(mTicker, next);
@@ -44,8 +32,8 @@ import android.widget.TextView;
 		super(context, attrs);
 	}
 
-	public void setStartingTimeStamp(long startingTimeStamp) {
-		this.startingTimeStamp = startingTimeStamp;
+	public void setStartingTimeStamp(LocalDateTime timestamp) {
+		this.timestamp = timestamp;
 	}
 
 	@Override protected void onAttachedToWindow() {
@@ -64,12 +52,13 @@ import android.widget.TextView;
 		}
 	}
 
-	private void onTimeChanged() {
-		long diff = System.currentTimeMillis() / 1000L - startingTimeStamp;
-		long diffSeconds = diff / 1000 % 60;
-		long diffMinutes = diff / (60 * 1000) % 60;
-		long diffHours = diff / (60 * 60 * 1000) % 24;
-		long diffDays = diff / (24 * 60 * 60 * 1000);
+	private void updateTime() {
+		Duration duration = Duration.between(LocalDateTime.now(), timestamp);
+
+		long diffSeconds = duration.getSeconds();
+		long diffMinutes = duration.toMinutes();
+		long diffHours = duration.toHours();
+		long diffDays = duration.toDays();
 		String time = "";
 		if (diffDays > 0) {
 			time = Long.toString(diffDays);
