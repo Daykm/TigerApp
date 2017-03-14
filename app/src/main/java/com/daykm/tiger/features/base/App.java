@@ -92,7 +92,7 @@ public class App extends Application {
          */
 		if (accountManager.addAccountExplicitly(newAccount, null, null)) {
 						/*
-             * If you don't set android:syncable="true" in
+						 * If you don't set android:syncable="true" in
              * in your <provider> element in the manifest,
              * then call context.setIsSyncable(account, AUTHORITY, 1)
              * here.

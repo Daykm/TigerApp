@@ -5,5 +5,5 @@ import dagger.Subcomponent;
 
 @Subcomponent public interface TimelineComponent {
 
-  void inject(TimelineView view);
+	void inject(TimelineView view);
 }
