@@ -4,6 +4,7 @@ import com.daykm.tiger.features.authentication.AuthActivity;
 import com.daykm.tiger.features.timeline.MentionsFragment;
 import com.daykm.tiger.features.timeline.TimelineFragment;
 import com.daykm.tiger.features.tweeting.TweetActivity;
+import com.daykm.tiger.features.twitter.TimelineView;
 import com.daykm.tiger.features.twitter.TwitterActivity;
 import dagger.Component;
 import javax.inject.Singleton;
@@ -18,4 +19,6 @@ import javax.inject.Singleton;
 	void inject(TimelineFragment fragment);
 
 	void inject(MentionsFragment fragment);
+
+	void inject(TimelineView timelineView);
 }

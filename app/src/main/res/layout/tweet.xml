@@ -6,71 +6,79 @@
     android:layout_height="match_parent"
     >
 
-    <ImageView
-        android:id="@+id/icon"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:contentDescription="@string/tweet_user_icon"
-        android:scaleType="centerCrop"
-        tools:src="@drawable/tiger"/>
+  <ImageView
+      android:id="@+id/icon"
+      android:layout_width="50dp"
+      android:layout_height="50dp"
+      android:contentDescription="@string/tweet_user_icon"
+      android:scaleType="centerCrop"
+      tools:src="@drawable/tiger"
+      />
 
-    <TextView
-        android:id="@+id/tweet_display_name"
-        style="@style/DisplayName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="2dp"
-        android:layout_toEndOf="@+id/icon"
-        android:ellipsize="end"
-        tools:text="Fancy Mc. Fancypants"/>
+  <TextView
+      android:id="@+id/tweet_display_name"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_margin="2dp"
+      android:layout_toEndOf="@+id/icon"
+      android:ellipsize="end"
+      tools:text="Fancy Mc. Fancypants"
+      style="@style/DisplayName"
+      />
 
-    <TextView
-        android:id="@+id/tweet_user_name"
-        style="@style/UserName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toEndOf="@+id/tweet_display_name"
-        tools:text="\@number1tiger"/>
+  <TextView
+      android:id="@+id/tweet_user_name"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_toEndOf="@+id/tweet_display_name"
+      tools:text="\@number1tiger"
+      style="@style/UserName"
+      />
 
-    <TextView
-        android:id="@+id/tweet_status"
-        style="@style/Tweet"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tweet_display_name"
-        android:layout_toEndOf="@+id/icon"
-        android:layout_toStartOf="@id/tweet_image"
-        tools:text="WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW"/>
+  <TextView
+      android:id="@+id/tweet_status"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_below="@+id/tweet_display_name"
+      android:layout_toEndOf="@+id/icon"
+      android:layout_toStartOf="@id/tweet_image"
+      tools:text="WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW"
+      style="@style/Tweet"
+      />
 
   <com.daykm.tiger.features.view.RelativeTextClock
-        android:id="@+id/tweet_timestamp"
-        style="@style/Timestamp"
-        android:layout_width="30dp"
+      android:id="@+id/tweet_timestamp"
+      android:layout_width="30dp"
+      android:layout_height="wrap_content"
+      android:layout_alignParentEnd="true"
+      android:layout_toEndOf="@id/tweet_user_name"
+      android:gravity="end"
+      tools:text="55m"
+      style="@style/Timestamp"
+      />
+
+  <ImageView
+      android:id="@+id/tweet_image"
+      android:layout_width="75dp"
+      android:layout_height="75dp"
+      android:layout_alignParentEnd="true"
+      android:layout_below="@+id/tweet_timestamp"
+      android:scaleType="centerCrop"
+      tools:src="@drawable/tiger"
+      tools:visibility="visible"
+      />
+
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:gravity="bottom"
+      >
+
+    <Button
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_toEndOf="@id/tweet_user_name"
-        android:gravity="end"
-        tools:text="55m"/>
+        style="?attr/borderlessButtonStyle"
+        />
 
-    <ImageView
-        android:id="@+id/tweet_image"
-        android:layout_width="75dp"
-        android:layout_height="75dp"
-        android:layout_alignParentEnd="true"
-        android:layout_below="@+id/tweet_timestamp"
-        android:scaleType="centerCrop"
-        tools:src="@drawable/tiger"
-        tools:visibility="visible"/>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="bottom">
-
-        <Button
-            style="?attr/borderlessButtonStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-
-    </LinearLayout>
+  </LinearLayout>
 </RelativeLayout>

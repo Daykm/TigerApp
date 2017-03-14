@@ -11,12 +11,11 @@ import com.daykm.tiger.features.data.realm.GsonProvider;
 import com.daykm.tiger.features.services.OAuth2Interceptor;
 import com.daykm.tiger.features.services.TimelineService;
 import com.daykm.tiger.features.services.TwitterApp;
+import hugo.weaving.DebugLog;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 
 public class MentionsSyncAdapter extends AbstractThreadedSyncAdapter {
-
-	public static final String TAG = MentionsSyncAdapter.class.getSimpleName();
 
 	TimelineService mentionsService;
 
@@ -32,7 +31,7 @@ public class MentionsSyncAdapter extends AbstractThreadedSyncAdapter {
 						new Retrofit.Builder(), httpBuilder.newBuilder(), TwitterApp.BASE_URL_1_1);
 	}
 
-	@Override public void onPerformSync(Account account, Bundle extras, String authority,
+	@Override @DebugLog public void onPerformSync(Account account, Bundle extras, String authority,
 			ContentProviderClient provider, SyncResult syncResult) {
 /*
 

@@ -7,12 +7,10 @@ import hugo.weaving.DebugLog;
 
 public class TimelineSyncService extends Service {
 
-	public static final String TAG = TimelineSyncService.class.getSimpleName();
-
 	// Storage for an instance of the sync adapter
-	private static TimelineSyncAdapter sSyncAdapter = null;
+	private static TimelineSyncAdapter syncAdapter = null;
 	// Object to use as a thread-safe lock
-	private static final Object sSyncAdapterLock = new Object();
+	private static final Object lock = new Object();
 
 	/*
 	 * Instantiate the sync adapter object.
@@ -23,20 +21,20 @@ public class TimelineSyncService extends Service {
          * Set the sync adapter as syncable
          * Disallow parallel syncs
          */
-		synchronized (sSyncAdapterLock) {
-			if (sSyncAdapter == null) {
-				sSyncAdapter = new TimelineSyncAdapter(getApplicationContext(), true);
+		synchronized (lock) {
+			if (syncAdapter == null) {
+				syncAdapter = new TimelineSyncAdapter(getApplicationContext(), true);
 			}
 		}
 	}
 
 	@Override public IBinder onBind(Intent intent) {
 				/*
-         * Get the object that allows external processes
+				 * Get the object that allows external processes
          * to call onPerformSync(). The object is created
          * in the base class code when the SyncAdapter
          * constructors call super()
          */
-		return sSyncAdapter.getSyncAdapterBinder();
+		return syncAdapter.getSyncAdapterBinder();
 	}
 }
