@@ -3,33 +3,33 @@ package com.daykm.tiger.features.data.realm.domain;
 import io.realm.RealmObject;
 
 public class Media extends RealmObject {
-  enum Type {
-    PHOTO("Photo"), MULTIPHOTO("multi photo"), GIFS("animated gifs"), VIDEO("video");
+	enum Type {
+		PHOTO("Photo"), MULTIPHOTO("multi photo"), GIFS("animated gifs"), VIDEO("video");
 
-    private String type;
+		private String type;
 
-    Type(String type) {
-      this.type = type;
-    }
+		Type(String type) {
+			this.type = type;
+		}
 
-    public boolean equals(String type) {
-      return (type == null) ? false : this.type.equals(type);
-    }
+		public boolean equals(String type) {
+			return (type == null) ? false : this.type.equals(type);
+		}
 
-    public String toString() {
-      return type;
-    }
-  }
+		public String toString() {
+			return type;
+		}
+	}
 
-  public static final String PHOTO = "PHOTO";
+	public static final String PHOTO = "PHOTO";
 
-  public long id;
-  public String id_str;
-  public String media_url;
-  public String media_url_https;
-  public String url;
-  public String display_url;
-  public String expanded_url;
-  public Sizes sizes;
-  public String type;
+	public long id;
+	public String id_str;
+	public String media_url;
+	public String media_url_https;
+	public String url;
+	public String display_url;
+	public String expanded_url;
+	public Sizes sizes;
+	public String type;
 }

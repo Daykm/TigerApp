@@ -100,7 +100,7 @@ public class App extends Application {
 
 		} else {
 						/*
-             * The account exists or some other error occurred. Log this, report it,
+						 * The account exists or some other error occurred. Log this, report it,
              * or handle it internally.
              */
 		}

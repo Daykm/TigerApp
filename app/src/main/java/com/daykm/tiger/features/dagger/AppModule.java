@@ -7,13 +7,13 @@ import dagger.Provides;
 
 @Module(includes = { ServiceModule.class }) public class AppModule {
 
-  App app;
+	App app;
 
-  public AppModule(App app) {
-    this.app = app;
-  }
+	public AppModule(App app) {
+		this.app = app;
+	}
 
-  @Provides public Context context() {
-    return app;
-  }
+	@Provides public Context context() {
+		return app;
+	}
 }
