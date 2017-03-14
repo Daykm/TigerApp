@@ -1,105 +1,105 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.daykm.tiger">
+		package="com.daykm.tiger">
 
-  <uses-permission android:name="android.permission.AUTHENTICATE_ACCOUNTS"/>
-  <uses-permission android:name="android.permission.INTERNET"/>
-  <uses-permission android:name="android.permission.WRITE_SYNC_SETTINGS"/>
-  <uses-permission android:name="android.permission.READ_SYNC_SETTINGS"/>
-  <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+	<uses-permission android:name="android.permission.AUTHENTICATE_ACCOUNTS"/>
+	<uses-permission android:name="android.permission.INTERNET"/>
+	<uses-permission android:name="android.permission.WRITE_SYNC_SETTINGS"/>
+	<uses-permission android:name="android.permission.READ_SYNC_SETTINGS"/>
+	<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
 
-  <application
-      android:name=".features.base.App"
-      android:allowBackup="true"
-      android:icon="@mipmap/ic_launcher"
-      android:label="@string/app_name"
-      android:supportsRtl="true"
-      android:theme="@style/AppTheme">
+	<application
+			android:name=".features.base.App"
+			android:allowBackup="true"
+			android:icon="@mipmap/ic_launcher"
+			android:label="@string/app_name"
+			android:supportsRtl="true"
+			android:theme="@style/AppTheme">
 
-    <activity
-        android:name=".features.twitter.TwitterActivity"
-        android:windowSoftInputMode="adjustResize"
-        android:theme="@style/AppTheme.NoActionBar">
-      <intent-filter>
-        <action android:name="android.intent.action.MAIN"/>
-        <category android:name="android.intent.category.LAUNCHER"/>
-      </intent-filter>
-    </activity>
+		<activity
+				android:name=".features.twitter.TwitterActivity"
+				android:windowSoftInputMode="adjustResize"
+				android:theme="@style/AppTheme.NoActionBar">
+			<intent-filter>
+				<action android:name="android.intent.action.MAIN"/>
+				<category android:name="android.intent.category.LAUNCHER"/>
+			</intent-filter>
+		</activity>
 
-    <activity
-        android:name=".features.authentication.AuthActivity"
-        android:launchMode="singleInstance"
-        android:noHistory="true"
-        android:theme="@style/AppTheme.NoActionBar">
-      <intent-filter>
-        <action android:name="android.intent.action.VIEW"/>
-        <category android:name="android.intent.category.BROWSABLE"/>
-        <data android:scheme="tigerdroid"/>
-      </intent-filter>
-    </activity>
+		<activity
+				android:name=".features.authentication.AuthActivity"
+				android:launchMode="singleInstance"
+				android:noHistory="true"
+				android:theme="@style/AppTheme.NoActionBar">
+			<intent-filter>
+				<action android:name="android.intent.action.VIEW"/>
+				<category android:name="android.intent.category.BROWSABLE"/>
+				<data android:scheme="tigerdroid"/>
+			</intent-filter>
+		</activity>
 
-    <activity
-        android:name=".features.preferences.SettingsActivity"
-        android:label="@string/title_activity_settings"
-        android:parentActivityName=".features.twitter.TwitterActivity"
-        android:theme="@style/AppTheme.NoActionBar">
-      <meta-data
-          android:name="android.support.PARENT_ACTIVITY"
-          android:value="com.daykm.tiger.features.twitter.TwitterActivity"/>
-    </activity>
+		<activity
+				android:name=".features.preferences.SettingsActivity"
+				android:label="@string/title_activity_settings"
+				android:parentActivityName=".features.twitter.TwitterActivity"
+				android:theme="@style/AppTheme.NoActionBar">
+			<meta-data
+					android:name="android.support.PARENT_ACTIVITY"
+					android:value="com.daykm.tiger.features.twitter.TwitterActivity"/>
+		</activity>
 
-    <activity android:name=".features.tweeting.TweetActivity"/>
+		<activity android:name=".features.tweeting.TweetActivity"/>
 
-    <receiver android:name=".features.sync.BootBroadcastReceiver">
-      <intent-filter>
-        <action android:name="android.intent.action.BOOT_COMPLETED"/>
-      </intent-filter>
-    </receiver>
+		<receiver android:name=".features.sync.BootBroadcastReceiver">
+			<intent-filter>
+				<action android:name="android.intent.action.BOOT_COMPLETED"/>
+			</intent-filter>
+		</receiver>
 
-    <service
-        android:name=".features.sync.TimelineSyncService"
-        android:exported="true">
-      <intent-filter>
-        <action android:name="android.content.SyncAdapter"/>
-      </intent-filter>
-      <meta-data
-          android:name="android.content.SyncAdapter"
-          android:resource="@xml/timelinesync"/>
-    </service>
+		<service
+				android:name=".features.sync.TimelineSyncService"
+				android:exported="true">
+			<intent-filter>
+				<action android:name="android.content.SyncAdapter"/>
+			</intent-filter>
+			<meta-data
+					android:name="android.content.SyncAdapter"
+					android:resource="@xml/timelinesync"/>
+		</service>
 
-    <service
-        android:name=".features.sync.MentionsSyncService"
-        android:exported="true">
-      <intent-filter>
-        <action android:name="android.content.SyncAdapter"/>
-      </intent-filter>
-      <meta-data
-          android:name="android.content.SyncAdapter"
-          android:resource="@xml/mentionsync"/>
-    </service>
+		<service
+				android:name=".features.sync.MentionsSyncService"
+				android:exported="true">
+			<intent-filter>
+				<action android:name="android.content.SyncAdapter"/>
+			</intent-filter>
+			<meta-data
+					android:name="android.content.SyncAdapter"
+					android:resource="@xml/mentionsync"/>
+		</service>
 
-    <provider
-        android:name=".features.sync.TwitterTimelineProvider"
-        android:authorities=".sync.TimelineSyncService"
-        android:exported="false"
-        android:syncable="true"/>
+		<provider
+				android:name=".features.sync.TwitterTimelineProvider"
+				android:authorities=".sync.TimelineSyncService"
+				android:exported="false"
+				android:syncable="true"/>
 
-    <provider
-        android:name=".features.sync.TwitterMentionsProvider"
-        android:authorities="sync.MentionsSyncService"
-        android:exported="false"
-        android:syncable="true"/>
+		<provider
+				android:name=".features.sync.TwitterMentionsProvider"
+				android:authorities="sync.MentionsSyncService"
+				android:exported="false"
+				android:syncable="true"/>
 
-    <service
-        android:name=".features.sync.TwitterAuthenticatorService"
-        android:enabled="true"
-        android:exported="true">
-      <intent-filter>
-        <action android:name="android.accounts.AccountAuthenticator"/>
-      </intent-filter>
-      <meta-data
-          android:name="android.accounts.AccountAuthenticator"
-          android:resource="@xml/accounts"/>
-    </service>
-  </application>
+		<service
+				android:name=".features.sync.TwitterAuthenticatorService"
+				android:enabled="true"
+				android:exported="true">
+			<intent-filter>
+				<action android:name="android.accounts.AccountAuthenticator"/>
+			</intent-filter>
+			<meta-data
+					android:name="android.accounts.AccountAuthenticator"
+					android:resource="@xml/accounts"/>
+		</service>
+	</application>
 </manifest>

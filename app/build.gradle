@@ -3,94 +3,94 @@ apply plugin: 'realm-android'
 apply plugin: 'com.jakewharton.hugo'
 
 android {
-  compileSdkVersion 25
-  buildToolsVersion '25.0.2'
-  defaultConfig {
-    applicationId "com.daykm.tiger"
-    minSdkVersion 19
-    targetSdkVersion 25
-    versionCode 3
-    versionName "0.1.1"
-    testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-    resConfig "en"
-  }
+	compileSdkVersion 25
+	buildToolsVersion '25.0.2'
+	defaultConfig {
+		applicationId "com.daykm.tiger"
+		minSdkVersion 19
+		targetSdkVersion 25
+		versionCode 3
+		versionName "0.1.1"
+		testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+		resConfig "en"
+	}
 
-  Properties p = new Properties()
+	Properties p = new Properties()
 
-  File projectProperties = rootProject.file('tiger.properties')
-  if (projectProperties.exists()) {
-    p.load(new FileInputStream(projectProperties))
-  }
+	File projectProperties = rootProject.file('tiger.properties')
+	if (projectProperties.exists()) {
+		p.load(new FileInputStream(projectProperties))
+	}
 
-  if (p.storeFile && p.storePassword && p.keyAlias && p.keyPassword) {
-    signingConfigs {
-      releaseConfig {
-        storeFile file(p.storeFile)
-        storePassword p.storePassword
-        keyAlias p.keyAlias
-        keyPassword p.keyPassword
-      }
-    }
+	if (p.storeFile && p.storePassword && p.keyAlias && p.keyPassword) {
+		signingConfigs {
+			releaseConfig {
+				storeFile file(p.storeFile)
+				storePassword p.storePassword
+				keyAlias p.keyAlias
+				keyPassword p.keyPassword
+			}
+		}
 
-    buildTypes.release.signingConfig signingConfigs.releaseConfig
-  }
+		buildTypes.release.signingConfig signingConfigs.releaseConfig
+	}
 
-  defaultConfig {
-    buildConfigField "String", 'CONSUMER_KEY', "${p.twitterKey ?: '"notAValidKey"'}"
-    buildConfigField "String", 'SECRET_KEY', "${p.twitterSecret ?: '"notAValidSecret"'}"
-  }
+	defaultConfig {
+		buildConfigField "String", 'CONSUMER_KEY', "${p.twitterKey ?: '"notAValidKey"'}"
+		buildConfigField "String", 'SECRET_KEY', "${p.twitterSecret ?: '"notAValidSecret"'}"
+	}
 
-  buildTypes {
-    release {
-      minifyEnabled = true
-      useProguard = true
-      proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-    }
-    debug {
-      minifyEnabled = true
-      useProguard = false
-      proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro',
-          'proguard-rules-debug.pro'
-    }
-  }
+	buildTypes {
+		release {
+			minifyEnabled = true
+			useProguard = true
+			proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+		}
+		debug {
+			minifyEnabled = true
+			useProguard = false
+			proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro',
+					'proguard-rules-debug.pro'
+		}
+	}
 
-  /*
-  splits {
-      abi {
-          enable true
-          reset()
-          include 'x86', 'x86_64', 'arm64-v8a', 'armeabi-v7a', 'armeabi'
-          universalApk false
-      }
-  }
-  */
+	/*
+	splits {
+			abi {
+					enable true
+					reset()
+					include 'x86', 'x86_64', 'arm64-v8a', 'armeabi-v7a', 'armeabi'
+					universalApk false
+			}
+	}
+	*/
 }
 
 dependencies {
-  compile lib.support
-  compile lib.supportAppcompat
-  compile lib.supportDesign
-  compile lib.supportPreference
-  compile lib.rxAndroid
-  compile lib.constraintLayout
+	compile lib.support
+	compile lib.supportAppcompat
+	compile lib.supportDesign
+	compile lib.supportPreference
+	compile lib.rxAndroid
+	compile lib.constraintLayout
 
-  compile lib.exoplayer
-  compile lib.picasso
+	compile lib.exoplayer
+	compile lib.picasso
 
-  compile lib.dagger
-  annotationProcessor lib.daggerCompiler
+	compile lib.dagger
+	annotationProcessor lib.daggerCompiler
 
-  compile lib.retrofit
-  compile lib.retrofitGson
-  compile lib.retrofitLogging
-  compile lib.gson
-  compile lib.butterknife
-  compile lib.timber
-  compile lib.threeTen
-  annotationProcessor lib.butterknifeCompiler
+	compile lib.retrofit
+	compile lib.retrofitGson
+	compile lib.retrofitLogging
+	compile lib.gson
+	compile lib.butterknife
+	compile lib.timber
+	compile lib.threeTen
+	annotationProcessor lib.butterknifeCompiler
 
-  androidTestCompile lib.supportAnnotation
-  testCompile lib.junit
-  androidTestCompile lib.supportTestRunner
-  androidTestCompile lib.supportTestRules
+	androidTestCompile lib.supportAnnotation
+	testCompile lib.junit
+	androidTestCompile lib.supportTestRunner
+	androidTestCompile lib.supportTestRules
 }
