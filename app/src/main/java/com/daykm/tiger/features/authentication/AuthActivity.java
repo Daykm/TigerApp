@@ -21,7 +21,7 @@ public class AuthActivity extends BaseActivity
 
 	@Override protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		App.instance().getComponent().inject(this);
+		App.instance().getComponent().authComponent().inject(this);
 		presenter.attach(this);
 		setContentView(R.layout.activity_authentication);
 		webView = (WebView) findViewById(R.id.webview);

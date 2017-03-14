@@ -19,8 +19,8 @@ public class CollectionDeserializer implements JsonDeserializer<Collection<?>> {
 		return parseAsArrayList(json, realType);
 	}
 
-	@SuppressWarnings("unchecked") public <T> ArrayList<T> parseAsArrayList(JsonElement json,
-			T type) {
+	@SuppressWarnings("unchecked")
+	public <T> ArrayList<T> parseAsArrayList(JsonElement json, T type) {
 		ArrayList<T> newArray = new ArrayList<T>();
 		Gson gson = new Gson();
 		JsonArray array = json.getAsJsonArray();

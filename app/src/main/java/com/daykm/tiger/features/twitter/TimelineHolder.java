@@ -22,7 +22,6 @@ public class TimelineHolder extends RecyclerView.ViewHolder {
 	@BindView(R.id.tweet_timestamp) RelativeTextClock timestamp;
 	@BindView(R.id.tweet_image) ImageView image;
 
-
 	public TimelineHolder(ViewGroup parent) {
 		super(LayoutInflater.from(parent.getContext()).inflate(R.layout.tweet, parent, false));
 		ButterKnife.bind(this, itemView);

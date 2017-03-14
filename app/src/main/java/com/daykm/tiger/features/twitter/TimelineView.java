@@ -28,7 +28,7 @@ public class TimelineView extends RecyclerView {
 	@Inject TimelineAdapter adapter;
 
 	void init() {
-		App.instance().getComponent().inject(this);
+		App.instance().getComponent().timelineComponent().inject(this);
 		setLayoutManager(new LinearLayoutManager(getContext()));
 		setAdapter(adapter);
 	}

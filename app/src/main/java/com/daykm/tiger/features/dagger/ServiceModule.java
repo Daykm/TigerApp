@@ -10,7 +10,7 @@ import com.daykm.tiger.features.services.TwitterApp;
 import com.google.gson.Gson;
 import dagger.Module;
 import dagger.Provides;
-import javax.inject.Singleton;
+import hugo.weaving.DebugLog;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
@@ -20,32 +20,32 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 	private OkHttpClient httpBuilder = new OkHttpClient.Builder().build();
 
-	@Provides @Singleton TimelineService timelineService(OAuth2Interceptor interceptor, Gson gson) {
+	@Provides @DebugLog TimelineService timelineService(OAuth2Interceptor interceptor, Gson gson) {
 		interceptor.isAuth = false;
 		return buildService(TimelineService.class, interceptor, gson, new Retrofit.Builder(),
 				httpBuilder.newBuilder(), TwitterApp.BASE_URL_1_1);
 	}
 
-	@Provides @Singleton AccessTokenService accessTokenService(OAuth2Interceptor interceptor,
+	@Provides @DebugLog AccessTokenService accessTokenService(OAuth2Interceptor interceptor,
 			Gson gson) {
 		interceptor.isAuth = false;
 		return buildService(AccessTokenService.class, interceptor, gson, new Retrofit.Builder(),
 				httpBuilder.newBuilder(), TwitterApp.BASE_URL);
 	}
 
-	@Provides @Singleton AuthenticationService authenticationService(OAuth2Interceptor interceptor,
+	@Provides @DebugLog AuthenticationService authenticationService(OAuth2Interceptor interceptor,
 			Gson gson) {
 		interceptor.isAuth = true;
 		return buildService(AuthenticationService.class, interceptor, gson, new Retrofit.Builder(),
 				httpBuilder.newBuilder(), TwitterApp.BASE_URL);
 	}
 
-	@Provides @Singleton Gson getGson() {
+	@Provides @DebugLog Gson getGson() {
 		Gson gson = GsonProvider.getGson();
 		return gson;
 	}
 
-	@Provides OAuth2Interceptor getInterceptor() {
+	@Provides @DebugLog OAuth2Interceptor getInterceptor() {
 		OAuth2Interceptor interceptor = new OAuth2Interceptor();
 		return interceptor;
 	}

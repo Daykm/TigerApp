@@ -1,23 +1,25 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.daykm.tiger.features.twitter.TwitterActivity">
+		xmlns:app="http://schemas.android.com/apk/res-auto"
+		xmlns:tools="http://schemas.android.com/tools"
+		tools:context="com.daykm.tiger.features.twitter.TwitterActivity">
 
-    <item android:id="@+id/action_search"
-        android:orderInCategory="1"
-        android:title="@string/search"
-        app:showAsAction="ifRoom"
-        app:icon="@drawable/v_search"/>
+	<item
+			android:id="@+id/action_search"
+			android:orderInCategory="1"
+			android:title="@string/search"
+			app:showAsAction="ifRoom"
+			app:icon="@drawable/v_search"/>
 
-    <item android:id="@+id/action_last_read_tweet"
-        android:title="@string/recent"
-        android:orderInCategory="2"
-        app:showAsAction="ifRoom"
-        app:icon="@drawable/v_recent" />
-    <item
-        android:id="@+id/action_settings"
-        android:orderInCategory="100"
-        android:title="@string/action_settings"
-        app:showAsAction="never" />
+	<item
+			android:id="@+id/action_last_read_tweet"
+			android:title="@string/recent"
+			android:orderInCategory="2"
+			app:showAsAction="ifRoom"
+			app:icon="@drawable/v_recent"/>
+	<item
+			android:id="@+id/action_settings"
+			android:orderInCategory="100"
+			android:title="@string/action_settings"
+			app:showAsAction="never"/>
 
 </menu>

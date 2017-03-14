@@ -23,7 +23,7 @@ public class GsonProvider {
 
 		builder.registerTypeAdapterFactory(new RealmListTypeAdapterFactory());
 				/*
-				builder.registerTypeAdapter(new TypeToken<RealmList<IntegerWrapper>>(){}.getType(), new IntegerArray());
+	      builder.registerTypeAdapter(new TypeToken<RealmList<IntegerWrapper>>(){}.getType(), new IntegerArray());
         */
 		return builder.create();
 	}

@@ -1,51 +1,56 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            xmlns:bind="http://schemas.android.com/apk/res-auto"
-            xmlns:tools="http://schemas.android.com/tools"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:context="com.daykm.tiger.features.tweeting.TweetFragment">
+		xmlns:tools="http://schemas.android.com/tools"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		tools:context="com.daykm.tiger.features.tweeting.TweetFragment"
+		>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+	<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:orientation="vertical"
+			>
 
-        <LinearLayout
-            android:id="@+id/first_tweets"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:visibility="gone"/>
+		<LinearLayout
+				android:id="@+id/first_tweets"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:orientation="vertical"
+				android:visibility="gone"
+				/>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:elevation="2dp"
-            android:orientation="vertical">
+		<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:elevation="2dp"
+				android:orientation="vertical"
+				>
 
-            <include
-                android:id="@+id/tweet"
-                layout="@layout/tweet"/>
+			<include
+					android:id="@+id/tweet"
+					layout="@layout/tweet"
+					/>
 
-            <!-- TODO support multiple images and other media -->
-            <com.facebook.drawee.view.SimpleDraweeView
-                android:id="@+id/tweet_image"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:adjustViewBounds="true"
-                android:contentDescription="@string/media"
-                android:scaleType="fitCenter"
-                android:visibility="gone"
-                tools:src="@drawable/tiger"
-                tools:visibility="visible"/>
-        </LinearLayout>
+			<!-- TODO support multiple images and other media -->
+			<com.facebook.drawee.view.SimpleDraweeView
+					android:id="@+id/tweet_image"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:adjustViewBounds="true"
+					android:contentDescription="@string/media"
+					android:scaleType="fitCenter"
+					android:visibility="gone"
+					tools:src="@drawable/tiger"
+					tools:visibility="visible"
+					/>
+		</LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/last_tweets"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:visibility="gone"/>
-    </LinearLayout>
+		<LinearLayout
+				android:id="@+id/last_tweets"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:orientation="vertical"
+				android:visibility="gone"
+				/>
+	</LinearLayout>
 </ScrollView>

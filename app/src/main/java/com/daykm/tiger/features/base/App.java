@@ -7,8 +7,9 @@ import android.content.Context;
 import android.support.v7.app.AppCompatDelegate;
 import android.support.v7.preference.PreferenceManager;
 import com.daykm.tiger.BuildConfig;
-import com.daykm.tiger.features.dagger.DaggerServiceComponent;
-import com.daykm.tiger.features.dagger.ServiceComponent;
+import com.daykm.tiger.features.dagger.AppComponent;
+import com.daykm.tiger.features.dagger.AppModule;
+import com.daykm.tiger.features.dagger.DaggerAppComponent;
 import com.daykm.tiger.features.data.realm.domain.TwitterServiceCredentials;
 import com.daykm.tiger.features.preferences.AppPreferences;
 import com.jakewharton.threetenabp.AndroidThreeTen;
@@ -18,7 +19,7 @@ import timber.log.Timber;
 
 public class App extends Application {
 
-	private ServiceComponent component;
+	private AppComponent component;
 
 	private static App app;
 
@@ -52,7 +53,7 @@ public class App extends Application {
 		}
 		realm.close();
 
-		component = DaggerServiceComponent.builder().build();
+		component = DaggerAppComponent.builder().appModule(new AppModule(this)).build();
 
 		if (PreferenceManager.getDefaultSharedPreferences(this)
 				.getBoolean(AppPreferences.APP_THEME, false)) {
@@ -68,7 +69,7 @@ public class App extends Application {
 		return app;
 	}
 
-	public ServiceComponent getComponent() {
+	public AppComponent getComponent() {
 		return component;
 	}
 
@@ -91,7 +92,7 @@ public class App extends Application {
          */
 		if (accountManager.addAccountExplicitly(newAccount, null, null)) {
 						/*
-             * If you don't set android:syncable="true" in
+						 * If you don't set android:syncable="true" in
              * in your <provider> element in the manifest,
              * then call context.setIsSyncable(account, AUTHORITY, 1)
              * here.
@@ -99,7 +100,7 @@ public class App extends Application {
 
 		} else {
 						/*
-             * The account exists or some other error occurred. Log this, report it,
+						 * The account exists or some other error occurred. Log this, report it,
              * or handle it internally.
              */
 		}

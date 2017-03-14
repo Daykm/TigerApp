@@ -64,7 +64,7 @@ public class TwitterActivity extends BaseActivity
 
 	@Override protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		App.instance().getComponent().inject(this);
+		App.instance().getComponent().twitterComponent().inject(this);
 		realm = Realm.getDefaultInstance();
 		creds = realm.where(TwitterServiceCredentials.class).findFirst();
 		checkLogin();

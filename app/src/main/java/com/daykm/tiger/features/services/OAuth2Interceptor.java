@@ -188,7 +188,7 @@ public class OAuth2Interceptor implements Interceptor {
 
 	// http://oauth.googlecode.com/svn/code/java/core/commons/src/main/java/net/oauth/OAuth.java
 		/*
-		 * Copyright 2007 Netflix, Inc.
+	   * Copyright 2007 Netflix, Inc.
      *
      * Licensed under the Apache License, Version 2.0 (the "License");
      * you may not use this file except in compliance with the License.
