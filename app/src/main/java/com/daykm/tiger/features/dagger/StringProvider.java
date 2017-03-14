@@ -7,17 +7,17 @@ import javax.inject.Inject;
 
 public class StringProvider {
 
-  Context context;
+	Context context;
 
-  @Inject @DebugLog public StringProvider(Context context) {
-    this.context = context;
-  }
+	@Inject @DebugLog public StringProvider(Context context) {
+		this.context = context;
+	}
 
-  public String getString(@StringRes int id) {
-    return context.getString(id);
-  }
+	public String getString(@StringRes int id) {
+		return context.getString(id);
+	}
 
-  public String getString(@StringRes int id, Object... args) {
-    return context.getString(id, args);
-  }
+	public String getString(@StringRes int id, Object... args) {
+		return context.getString(id, args);
+	}
 }

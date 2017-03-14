@@ -14,24 +14,24 @@ import timber.log.Timber;
 
 public class StatusViewHolder extends RecyclerView.ViewHolder {
 
-  @BindView(R.id.icon) public ImageView icon;
+	@BindView(R.id.icon) public ImageView icon;
 
-  @BindView(R.id.tweet_display_name) public TextView displayName;
+	@BindView(R.id.tweet_display_name) public TextView displayName;
 
-  @BindView(R.id.tweet_user_name) public TextView userName;
+	@BindView(R.id.tweet_user_name) public TextView userName;
 
-  @BindView(R.id.tweet_status) public TextView tweetStatus;
+	@BindView(R.id.tweet_status) public TextView tweetStatus;
 
-  @BindView(R.id.tweet_timestamp) public RelativeTextClock timestamp;
+	@BindView(R.id.tweet_timestamp) public RelativeTextClock timestamp;
 
-  @BindView(R.id.tweet_image) public ImageView tweetImage;
+	@BindView(R.id.tweet_image) public ImageView tweetImage;
 
-  public StatusViewHolder(ViewGroup parent) {
-    super(LayoutInflater.from(parent.getContext()).inflate(R.layout.tweet, parent, false));
-    ButterKnife.bind(this, itemView);
-  }
+	public StatusViewHolder(ViewGroup parent) {
+		super(LayoutInflater.from(parent.getContext()).inflate(R.layout.tweet, parent, false));
+		ButterKnife.bind(this, itemView);
+	}
 
-  public void bind(Status status) {
-    Timber.i("Status get");
-  }
+	public void bind(Status status) {
+		Timber.i("Status get");
+	}
 }
