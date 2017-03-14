@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="account_type">tiger.com</string>
-    <string name="authority_timeline">.sync.TimelineSyncService</string>
-    <string name="authority_mentions">.sync.MentionsSyncService</string>
-    <string name="intent_name">database-change</string>
+  <string name="account_type">tiger.com</string>
+  <string name="authority_timeline">.sync.TimelineSyncService</string>
+  <string name="authority_mentions">.sync.MentionsSyncService</string>
+  <string name="intent_name">database-change</string>
 </resources>

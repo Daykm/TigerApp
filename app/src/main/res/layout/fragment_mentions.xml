@@ -4,12 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".features.mentions.MentionsFragment">
+    tools:context=".features.mentions.MentionsFragment"
+    >
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/mentions"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layoutManager="LinearLayoutManager"/>
+  <android.support.v7.widget.RecyclerView
+      android:id="@+id/mentions"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      app:layoutManager="LinearLayoutManager"
+      />
 
 </FrameLayout>

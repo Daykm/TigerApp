@@ -7,26 +7,30 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     android:focusableInTouchMode="true"
-    tools:context=".features.preferences.SettingsActivity">
+    tools:context=".features.preferences.SettingsActivity"
+    >
 
-    <android.support.design.widget.AppBarLayout
+  <android.support.design.widget.AppBarLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:theme="@style/AppTheme.AppBarOverlay"
+      >
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay">
+        android:layout_height="?attr/actionBarSize"
+        app:popupTheme="@style/AppTheme.PopupOverlay"
 
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            app:popupTheme="@style/AppTheme.PopupOverlay"
+        app:title="@string/action_settings"
+        />
 
-            app:title="@string/action_settings" />
+  </android.support.design.widget.AppBarLayout>
 
-    </android.support.design.widget.AppBarLayout>
-
-    <FrameLayout
-        android:layout_marginTop="?attr/actionBarSize"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/content"/>
+  <FrameLayout
+      android:layout_marginTop="?attr/actionBarSize"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:id="@+id/content"
+      />
 </android.support.design.widget.CoordinatorLayout>

@@ -5,23 +5,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="horizontal"
     android:padding="4dp"
-    android:gravity="center_vertical">
+    android:gravity="center_vertical"
+    >
 
-    <com.facebook.drawee.view.SimpleDraweeView
-        android:contentDescription="@string/dialog_user_icon"
-        android:id="@+id/icon"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:scaleType="centerInside"
-        tools:src="@drawable/tiger"/>
+  <com.facebook.drawee.view.SimpleDraweeView
+      android:contentDescription="@string/dialog_user_icon"
+      android:id="@+id/icon"
+      android:layout_width="20dp"
+      android:layout_height="20dp"
+      android:scaleType="centerInside"
+      tools:src="@drawable/tiger"
+      />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/tweet_user_name"
-        android:ellipsize="end"
-        android:maxEms="6"
-        android:maxLines="1"
-        tools:text="CuteTigerAccount"/>
+  <TextView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:id="@+id/tweet_user_name"
+      android:ellipsize="end"
+      android:maxEms="6"
+      android:maxLines="1"
+      tools:text="CuteTigerAccount"
+      />
 
 </LinearLayout>

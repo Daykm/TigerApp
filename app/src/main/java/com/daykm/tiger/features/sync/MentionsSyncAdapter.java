@@ -17,22 +17,22 @@ import retrofit2.Retrofit;
 
 public class MentionsSyncAdapter extends AbstractThreadedSyncAdapter {
 
-	TimelineService mentionsService;
+  TimelineService mentionsService;
 
-	public MentionsSyncAdapter(Context context, boolean autoInitialize) {
-		super(context, autoInitialize);
+  public MentionsSyncAdapter(Context context, boolean autoInitialize) {
+    super(context, autoInitialize);
 
-		OkHttpClient httpBuilder = new OkHttpClient.Builder().build();
+    OkHttpClient httpBuilder = new OkHttpClient.Builder().build();
 
-		OAuth2Interceptor interceptor = new OAuth2Interceptor();
+    OAuth2Interceptor interceptor = new OAuth2Interceptor();
 
-		mentionsService =
-				ServiceModule.buildService(TimelineService.class, interceptor, GsonProvider.getGson(),
-						new Retrofit.Builder(), httpBuilder.newBuilder(), TwitterApp.BASE_URL_1_1);
-	}
+    mentionsService =
+        ServiceModule.buildService(TimelineService.class, interceptor, GsonProvider.getGson(),
+            new Retrofit.Builder(), httpBuilder.newBuilder(), TwitterApp.BASE_URL_1_1);
+  }
 
-	@Override @DebugLog public void onPerformSync(Account account, Bundle extras, String authority,
-			ContentProviderClient provider, SyncResult syncResult) {
+  @Override @DebugLog public void onPerformSync(Account account, Bundle extras, String authority,
+      ContentProviderClient provider, SyncResult syncResult) {
 /*
 
         Realm realm = Realm.getDefaultInstance();
@@ -74,5 +74,5 @@ public class MentionsSyncAdapter extends AbstractThreadedSyncAdapter {
         });
         */
 
-	}
+  }
 }

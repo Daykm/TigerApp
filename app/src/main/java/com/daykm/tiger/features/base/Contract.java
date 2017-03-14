@@ -2,13 +2,13 @@ package com.daykm.tiger.features.base;
 
 public interface Contract<S extends Contract.View> {
 
-	interface View<S> {
+  interface View<S> {
 
-	}
+  }
 
-	interface Presenter<S> {
-		void attach(S view);
+  interface Presenter<S> {
+    void attach(S view);
 
-		void detach();
-	}
+    void detach();
+  }
 }

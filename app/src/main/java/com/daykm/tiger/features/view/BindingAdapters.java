@@ -2,7 +2,7 @@ package com.daykm.tiger.features.view;
 
 public class BindingAdapters {
 /*
-		@BindingAdapter("app:remoteSrc")
+    @BindingAdapter("app:remoteSrc")
     public static void setImageSrc(SimpleDraweeView view, String url) {
         view.setImageURI(url);
     }

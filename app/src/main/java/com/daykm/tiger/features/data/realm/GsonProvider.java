@@ -9,22 +9,22 @@ import io.realm.RealmObject;
 
 public class GsonProvider {
 
-	public static Gson getGson() {
-		GsonBuilder builder = new GsonBuilder();
-		builder.setExclusionStrategies(new ExclusionStrategy() {
-			@Override public boolean shouldSkipField(FieldAttributes f) {
-				return f.getDeclaringClass().equals(RealmObject.class);
-			}
+  public static Gson getGson() {
+    GsonBuilder builder = new GsonBuilder();
+    builder.setExclusionStrategies(new ExclusionStrategy() {
+      @Override public boolean shouldSkipField(FieldAttributes f) {
+        return f.getDeclaringClass().equals(RealmObject.class);
+      }
 
-			@Override public boolean shouldSkipClass(Class<?> clazz) {
-				return false;
-			}
-		});
+      @Override public boolean shouldSkipClass(Class<?> clazz) {
+        return false;
+      }
+    });
 
-		builder.registerTypeAdapterFactory(new RealmListTypeAdapterFactory());
-				/*
-				builder.registerTypeAdapter(new TypeToken<RealmList<IntegerWrapper>>(){}.getType(), new IntegerArray());
+    builder.registerTypeAdapterFactory(new RealmListTypeAdapterFactory());
+        /*
+        builder.registerTypeAdapter(new TypeToken<RealmList<IntegerWrapper>>(){}.getType(), new IntegerArray());
         */
-		return builder.create();
-	}
+    return builder.create();
+  }
 }

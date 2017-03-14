@@ -9,8 +9,8 @@ import com.daykm.tiger.features.twitter.TimelineView;
 
 public class TimelineFragment extends Fragment {
 
-	@Override public View onCreateView(LayoutInflater inflater, ViewGroup container,
-			Bundle savedInstanceState) {
-		return new TimelineView(container.getContext());
-	}
+  @Override public View onCreateView(LayoutInflater inflater, ViewGroup container,
+      Bundle savedInstanceState) {
+    return new TimelineView(container.getContext());
+  }
 }

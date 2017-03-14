@@ -17,7 +17,7 @@ buildscript {
         apply from: 'dependencies.gradle'
         classpath plugin.android
         classpath plugin.realm
-        classpath 'com.jakewharton.hugo:hugo-plugin:1.2.1'
+      classpath plugin.hugo
     }
 }
 
