@@ -6,31 +6,31 @@ import io.realm.RealmObject;
 
 public class Coordinate extends RealmObject {
 
-  private int id;
-  private RealmList<FloatWrapper> coordinates;
-  private String type;
+	private int id;
+	private RealmList<FloatWrapper> coordinates;
+	private String type;
 
-  public int getId() {
-    return id;
-  }
+	public int getId() {
+		return id;
+	}
 
-  public void setId(int id) {
-    this.id = id;
-  }
+	public void setId(int id) {
+		this.id = id;
+	}
 
-  public RealmList<FloatWrapper> getCoordinates() {
-    return coordinates;
-  }
+	public RealmList<FloatWrapper> getCoordinates() {
+		return coordinates;
+	}
 
-  public void setCoordinates(RealmList<FloatWrapper> coordinates) {
-    this.coordinates = coordinates;
-  }
+	public void setCoordinates(RealmList<FloatWrapper> coordinates) {
+		this.coordinates = coordinates;
+	}
 
-  public String getType() {
-    return type;
-  }
+	public String getType() {
+		return type;
+	}
 
-  public void setType(String type) {
-    this.type = type;
-  }
+	public void setType(String type) {
+		this.type = type;
+	}
 }

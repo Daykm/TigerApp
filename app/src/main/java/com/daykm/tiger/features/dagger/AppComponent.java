@@ -7,11 +7,11 @@ import dagger.Component;
 
 @Component(modules = AppModule.class) @AppScope public interface AppComponent {
 
-  StringProvider stringProvider();
+	StringProvider stringProvider();
 
-  TimelineComponent timelineComponent();
+	TimelineComponent timelineComponent();
 
-  TweetComponent twitterComponent();
+	TweetComponent twitterComponent();
 
-  AuthComponent authComponent();
+	AuthComponent authComponent();
 }

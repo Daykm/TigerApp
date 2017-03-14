@@ -7,12 +7,12 @@ import javax.inject.Inject;
 
 public class TimelineRepository {
 
-  Realm realm = Realm.getDefaultInstance();
+	Realm realm = Realm.getDefaultInstance();
 
-  @Inject TimelineRepository() {
-  }
+	@Inject TimelineRepository() {
+	}
 
-  public RealmResults<Status> getTimeline() {
-    return realm.where(Status.class).findAll();
-  }
+	public RealmResults<Status> getTimeline() {
+		return realm.where(Status.class).findAll();
+	}
 }

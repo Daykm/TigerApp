@@ -7,13 +7,13 @@ import android.support.annotation.Nullable;
 
 public class TwitterAuthenticatorService extends Service {
 
-  private TwitterAuthenticator auth;
+	private TwitterAuthenticator auth;
 
-  @Override public void onCreate() {
-    auth = new TwitterAuthenticator(this);
-  }
+	@Override public void onCreate() {
+		auth = new TwitterAuthenticator(this);
+	}
 
-  @Nullable @Override public IBinder onBind(Intent intent) {
-    return auth.getIBinder();
-  }
+	@Nullable @Override public IBinder onBind(Intent intent) {
+		return auth.getIBinder();
+	}
 }

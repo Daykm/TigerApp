@@ -18,41 +18,41 @@ import static junit.framework.Assert.assertTrue;
 
 @RunWith(AndroidJUnit4.class) public class GsonTest {
 
-  Context context;
+	Context context;
 
-  @Before public void setup() {
-    context = InstrumentationRegistry.getContext();
-  }
+	@Before public void setup() {
+		context = InstrumentationRegistry.getContext();
+	}
 
-  @Test public void testGetGson() {
-    Gson gson = GsonProvider.getGson();
-    assertNotNull(gson);
-  }
+	@Test public void testGetGson() {
+		Gson gson = GsonProvider.getGson();
+		assertNotNull(gson);
+	}
 
-  @Test public void testParse() {
-    Gson gson = GsonProvider.getGson();
+	@Test public void testParse() {
+		Gson gson = GsonProvider.getGson();
 
-    // TODO fix test resources not being found and move this out of the source resources
-    Mention[] status = gson.fromJson(Data.DATA_USER_MENTION, Mention[].class);
-  }
+		// TODO fix test resources not being found and move this out of the source resources
+		Mention[] status = gson.fromJson(Data.DATA_USER_MENTION, Mention[].class);
+	}
 
-  @Test public void testMentionParse() {
+	@Test public void testMentionParse() {
 
-    Gson gson = GsonProvider.getGson();
+		Gson gson = GsonProvider.getGson();
 
-    // TODO fix test resources not being found and move this out of the source resources
-    Mention[] status = gson.fromJson(Data.DATA_USER_MENTION, Mention[].class);
-    assertEquals(status.length, 2);
-  }
+		// TODO fix test resources not being found and move this out of the source resources
+		Mention[] status = gson.fromJson(Data.DATA_USER_MENTION, Mention[].class);
+		assertEquals(status.length, 2);
+	}
 
-  @Test public void testEntitiesParse() {
-    Gson gson = GsonProvider.getGson();
-    Entities entities = gson.fromJson(Data.DATA_ENTITIES, Entities.class);
-  }
+	@Test public void testEntitiesParse() {
+		Gson gson = GsonProvider.getGson();
+		Entities entities = gson.fromJson(Data.DATA_ENTITIES, Entities.class);
+	}
 
-  @Test public void testStatusParse() {
-    Gson gson = GsonProvider.getGson();
-    Status[] statuses = gson.fromJson(Data.DATA, Status[].class);
-    assertTrue(true);
-  }
+	@Test public void testStatusParse() {
+		Gson gson = GsonProvider.getGson();
+		Status[] statuses = gson.fromJson(Data.DATA, Status[].class);
+		assertTrue(true);
+	}
 }

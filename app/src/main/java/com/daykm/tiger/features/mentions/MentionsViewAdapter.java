@@ -5,24 +5,24 @@ import android.view.View;
 import android.view.ViewGroup;
 
 public class MentionsViewAdapter
-    extends RecyclerView.Adapter<MentionsViewAdapter.MentionViewHolder> {
+		extends RecyclerView.Adapter<MentionsViewAdapter.MentionViewHolder> {
 
-  @Override public MentionViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-    return null;
-  }
+	@Override public MentionViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+		return null;
+	}
 
-  @Override public void onBindViewHolder(MentionViewHolder holder, int position) {
+	@Override public void onBindViewHolder(MentionViewHolder holder, int position) {
 
-  }
+	}
 
-  @Override public int getItemCount() {
-    return 0;
-  }
+	@Override public int getItemCount() {
+		return 0;
+	}
 
-  public static class MentionViewHolder extends RecyclerView.ViewHolder {
+	public static class MentionViewHolder extends RecyclerView.ViewHolder {
 
-    public MentionViewHolder(View itemView) {
-      super(itemView);
-    }
-  }
+		public MentionViewHolder(View itemView) {
+			super(itemView);
+		}
+	}
 }
